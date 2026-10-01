@@ -6,379 +6,399 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="description" content="Chartis creator services for Fortnite and Roblox (draft)">
 <title>Chartis Creator Services</title>
+<link rel="icon" href="assets/chartis-c.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112..125,600..900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Layout: hero (offer + a real LiveOps week) → plan picker → four service buckets → how it works → packages → close.
-   One accent (signal blue); amber only means "live" or "picked for you". Review mode adds comment pins to every service. */
+/* Mike's direction (the chartis.gg look): black ground, Chartis blue, Inter Tight headings, numbered sections,
+   open-and-close rows. Content folded back in: the LiveOps week, all 20 services in 4 groups, the plan picker, a fuller FAQ. */
 :root{
-  --paper:#F2F4F8; --surface:#FFFFFF; --ink:#0D1726; --ink-2:#4B566B; --ink-3:#6F7A92; --line:#D7DDE7;
-  --accent:#2347E6; --accent-ink:#FFFFFF; --accent-soft:#E2E8FF; --live:#D98E06; --live-soft:#FFF1D6;
-  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
-  --body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --bg:#000000; --panel:#0c2029; --panel-2:#0a1820; --line:#17323d; --line-2:#2a5366;
+  --ink:#ffffff; --ink-2:#cfd9de; --ink-3:#a7b6bd; --ink-4:#6f8791;
+  --blue:#00b8f5; --blue-2:#5fd3ff; --navy:#0a5f9c;
+  --head:"Inter Tight",Inter,Helvetica,Arial,sans-serif; --body:Inter,Helvetica,Arial,sans-serif;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#0A101B; --surface:#111A28; --ink:#E9EEF6; --ink-2:#A2ADC0; --ink-3:#7F8BA2; --line:#233046;
-  --accent:#7E98FF; --accent-ink:#0A101B; --accent-soft:#1A2550; --live:#F4B840; --live-soft:#33270C; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#0A101B; --surface:#111A28; --ink:#E9EEF6; --ink-2:#A2ADC0; --ink-3:#7F8BA2; --line:#233046;
-  --accent:#7E98FF; --accent-ink:#0A101B; --accent-soft:#1A2550; --live:#F4B840; --live-soft:#33270C; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--body);margin:0}
-.wrap{max-width:1160px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
-a{color:var(--accent)}
-a:focus-visible,button:focus-visible,label:focus-within{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
-button{font:inherit;color:inherit;cursor:pointer}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--ink)}
+:focus-visible{outline:2px solid var(--blue-2);outline-offset:3px;border-radius:8px}
+img{max-width:100%}
 
-/* Review bar */
-.reviewbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--live-soft);border-bottom:1px solid var(--line)}
-.reviewbar .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-block:9px;font-size:13.5px}
-.reviewbar b{font-weight:600}
-.reviewbar .sp{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
-.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.draft{background:#0f2a36;color:var(--ink-2);font-size:13px;text-align:center;padding:7px 16px}
+.draft b{color:var(--ink)}
 
-header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px}
-.brand{font:800 18px/1 var(--display);font-stretch:125%;letter-spacing:.02em;color:var(--ink);text-decoration:none}
-.brand span{color:var(--accent)}
-nav.links{display:flex;gap:20px;font-size:14px;flex-wrap:wrap}
-nav.links a{color:var(--ink-2);text-decoration:none}
-nav.links a:hover{color:var(--ink)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:linear-gradient(90deg,#0a5f9c 0%,#0b84c6 45%,#0a6fae 100%);border-bottom:2px solid #1aa8f0}
+.top-in{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:1px;color:#fff;font:800 28px/1 var(--head);letter-spacing:-.01em}
+.logo img{height:27px;width:auto;filter:brightness(0) invert(1)}
+.logo:hover{color:#fff}
+.top nav{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.12);border-radius:999px;padding:4px}
+.top nav a{color:#fff;font-weight:600;font-size:15px;padding:8px 14px;border-radius:999px}
+.top nav a:hover{background:rgba(255,255,255,.15)}
+.top nav a.cta{background:var(--blue);font-weight:700;padding:8px 16px}
 
-/* Hero */
-.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);gap:clamp(24px,5vw,64px);align-items:center;padding-block:clamp(24px,5vw,64px) clamp(40px,7vw,80px)}
-.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
-h1{font:900 clamp(40px,6.4vw,78px)/.95 var(--display);font-stretch:118%;letter-spacing:-.01em;margin:16px 0 20px;text-wrap:balance}
-h1 em{font-style:normal;color:var(--accent)}
-.lede{font-size:clamp(17px,1.6vw,19px);color:var(--ink-2);max-width:54ch;margin:0 0 28px}
-.cta{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;font:600 15px/1 var(--body);padding:14px 20px;border-radius:999px;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--surface);transition:transform .15s}
-.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.btn:hover{transform:translateY(-1px)}
-.plat{margin-top:22px;font-size:13px;color:var(--ink-3)}
+.hero{background:radial-gradient(ellipse at 50% 0%,#123a8a 0%,#0a1a45 45%,#000 100%);padding:104px 24px 88px}
+.hero-in{max-width:920px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px}
+.kicker{font:600 14px/1 var(--head);color:var(--blue-2);letter-spacing:.08em;text-transform:uppercase}
+h1{margin:0;font:800 clamp(48px,8vw,96px)/1 var(--head);letter-spacing:-.04em;text-wrap:balance}
+.lede{margin:0;font-size:20px;line-height:1.45;color:var(--ink-2);max-width:580px;text-wrap:pretty}
+.btns{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding-top:8px}
+.btn{display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:700;font-size:18px;padding:18px 32px;border-radius:999px;border:1px solid var(--line-2)}
+.btn.primary{background:var(--blue);border-color:var(--blue)}
+.btn:hover{color:#fff;filter:brightness(1.1)}
 
-.week{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 22px 18px;box-shadow:0 18px 50px rgba(13,23,38,.08)}
-.week-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
-.week-h b{font:700 15px/1.2 var(--display);font-stretch:112%}
-.week-h span{font:500 11px/1 var(--mono);color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase}
-.day{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:11px 0;border-top:1px solid var(--line);align-items:start}
-.day .d{font:500 12px/1.6 var(--mono);color:var(--ink-3);letter-spacing:.06em}
-.day p{margin:0;font-size:14.5px;line-height:1.45}
-.day small{display:block;color:var(--ink-3);font-size:12.5px;margin-top:2px}
-.day.live{background:var(--live-soft);margin-inline:-22px;padding-inline:22px;border-top-color:transparent}
-.day.live .d{color:var(--ink)}
-.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--live);margin-right:7px;vertical-align:1px;animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--live) 70%,transparent)}70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(180deg,#000 0%,#071319 100%)}
+.proof-in{max-width:1100px;margin:0 auto;padding:36px 24px;display:grid;gap:28px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+.stat b{display:block;font:800 clamp(28px,3.4vw,38px)/1 var(--head);letter-spacing:-.02em}
+.stat span{display:block;margin-top:8px;color:var(--ink-3);font-size:15px}
+.brands{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 28px;color:var(--ink-4);font:700 15px/1 var(--head);letter-spacing:.02em;text-transform:uppercase}
+.brands em{font-style:normal;color:var(--ink-3);font:600 12px/1 var(--head);letter-spacing:.1em}
 
-/* Sections */
-section.block{padding-block:clamp(40px,6vw,80px);border-top:1px solid var(--line)}
-.sec-h{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:end;margin-bottom:32px}
-h2{font:800 clamp(28px,3.6vw,44px)/1.02 var(--display);font-stretch:115%;margin:10px 0 0;text-wrap:balance}
-.sec-h p{margin:0;color:var(--ink-2);max-width:52ch}
+main{max-width:960px;margin:0 auto;padding:24px 24px 0}
+section.s{padding:56px 0 24px;display:flex;flex-direction:column;gap:24px;scroll-margin-top:80px}
+.s-h{display:flex;flex-direction:column;gap:8px}
+.eyebrow{font:600 13px/1 var(--head);color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase}
+h2{margin:0;font:800 clamp(32px,5vw,48px)/1 var(--head);letter-spacing:-.03em;text-wrap:balance}
+.s-h p{margin:4px 0 0;color:var(--ink-3);font-size:17px;max-width:620px}
+
+/* LiveOps week */
+.week{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.day{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 14px;display:flex;flex-direction:column;gap:6px}
+.day .d{font:700 12px/1 var(--head);letter-spacing:.1em;color:var(--ink-4)}
+.day b{font-size:16px;line-height:1.25}
+.day span{font-size:13.5px;color:var(--ink-3);line-height:1.4}
+.day.live{background:linear-gradient(160deg,#0a6fae 0%,#00b8f5 100%);border-color:#1aa8f0}
+.day.live .d,.day.live span{color:#e6f7ff}
+.pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:#fff;margin-right:6px;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.7)}70%{box-shadow:0 0 0 8px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none}}
+
+/* Groups + open-and-close rows */
+.groups{display:flex;gap:8px;flex-wrap:wrap}
+.groups button{all:unset;cursor:pointer;font:600 15px/1 var(--body);padding:10px 16px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2)}
+.groups button[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.groups button:focus-visible{outline:2px solid var(--blue-2);outline-offset:3px}
+.group{display:flex;flex-direction:column;gap:6px}
+.group-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:14px}
+.group-h h3{margin:0;font:800 24px/1.1 var(--head);letter-spacing:-.02em}
+.group-h span{color:var(--ink-3);font-size:15px}
+.rows{border-top:1px solid var(--line)}
+details.row{border-bottom:1px solid var(--line)}
+details.row > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:20px 4px}
+details.row > summary::-webkit-details-marker{display:none}
+details.row > summary:hover .t{color:var(--blue)}
+.num{font:600 13px/1 var(--head);color:var(--ink-4);width:28px;flex-shrink:0}
+.txt{flex:1;display:flex;flex-direction:column;gap:4px;min-width:0}
+.t{font-weight:700;font-size:21px;line-height:1.2}
+.sh{font-size:16px;color:var(--ink-3);line-height:1.4}
+.ic{width:36px;height:36px;flex-shrink:0;border-radius:999px;border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:500}
+.ic::before{content:"+"}
+details[open] > summary .ic{background:var(--blue);border-color:var(--blue)}
+details[open] > summary .ic::before{content:"–"}
+.pts{margin:0;padding:0 4px 22px 48px;list-style:none;display:flex;flex-direction:column;gap:10px}
+.pts li{display:flex;gap:12px;align-items:baseline;font-size:17px;line-height:1.45;color:#e3eaed}
+.pts li::before{content:"";width:8px;height:8px;background:var(--blue);flex-shrink:0;transform:translateY(-2px)}
+.row.rec .num{color:var(--blue)}
+.row.rec .t::after{content:"For your plan";margin-left:10px;font:600 11px/1 var(--head);letter-spacing:.06em;text-transform:uppercase;background:var(--blue);color:#fff;padding:4px 8px;border-radius:999px;vertical-align:4px}
 
 /* Plan picker */
-.picker{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start}
-.q{display:grid;gap:12px;margin-bottom:24px}
-.q > b{font:700 17px/1.2 var(--display);font-stretch:112%}
+.picker{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.q{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px}
+.q b{font:700 18px/1.2 var(--head)}
+.q small{color:var(--ink-4);font-size:13px}
 .opts{display:flex;flex-wrap:wrap;gap:8px}
-.opt{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 14px;font-size:14.5px;font-weight:500;text-align:left;transition:border-color .15s,background .15s}
-.opt:hover{border-color:var(--accent)}
-.opt[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.plan{background:var(--ink);color:var(--paper);border-radius:18px;padding:24px;display:grid;gap:14px;min-height:100%}
-.plan .eyebrow{color:var(--live)}
-.plan h3{font:800 24px/1.1 var(--display);font-stretch:115%;margin:0;text-wrap:balance}
-.plan ol{margin:0;padding-left:20px;display:grid;gap:8px}
-.plan li b{font-weight:600}
-.plan li span{display:block;font-size:13.5px;color:color-mix(in srgb,var(--paper) 72%,transparent)}
-.plan .pk{border-top:1px solid color-mix(in srgb,var(--paper) 20%,transparent);padding-top:14px;font-size:14.5px}
-.plan .pk b{color:var(--live)}
-.plan a{color:var(--paper)}
+.opt{all:unset;cursor:pointer;font:500 15px/1.2 var(--body);padding:10px 14px;border-radius:12px;border:1px solid var(--line-2);color:var(--ink-2)}
+.opt:hover{border-color:var(--blue)}
+.opt[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.opt:focus-visible{outline:2px solid var(--blue-2);outline-offset:3px}
+.plan{grid-column:1 / -1;background:linear-gradient(140deg,#0a3f69 0%,#0b2a40 60%,#0c2029 100%);border:1px solid #1aa8f0;border-radius:16px;padding:24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.plan h3{margin:0 0 6px;font:800 24px/1.1 var(--head)}
+.plan p{margin:0;color:var(--ink-2)}
+.plan ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.plan li b{font-weight:700}
+.plan li span{display:block;color:var(--ink-3);font-size:14.5px}
+.plan .fit{margin-top:14px;padding-top:14px;border-top:1px solid var(--line-2);font-size:15px;color:var(--ink-2)}
+.plan .fit b{color:var(--blue-2)}
 
-/* Buckets */
-.bucketnav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:36px}
-.bucketnav a{display:grid;gap:4px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--surface);text-decoration:none;color:var(--ink)}
-.bucketnav a b{font:800 16px/1.15 var(--display);font-stretch:112%}
-.bucketnav a span{font-size:12.5px;color:var(--ink-3)}
-.bucketnav a:hover{border-color:var(--accent)}
-.buckets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,56px) clamp(24px,4vw,48px)}
-.bucket{scroll-margin-top:70px}
-.bucket h3{font:800 22px/1.1 var(--display);font-stretch:112%;margin:0 0 6px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.bucket h3 .tag{font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
-.bucket > p{margin:0 0 12px;color:var(--ink-2);font-size:15px}
-.svc{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:12px 10px;margin-inline:-10px;border-top:1px solid var(--line);border-radius:10px;transition:background .25s}
-.svc b{font-weight:600;font-size:15.5px}
-.svc span{grid-column:1;color:var(--ink-2);font-size:14.5px;line-height:1.5}
-.svc .pin{grid-column:2;grid-row:1 / span 2;align-self:center}
-.svc.rec{background:var(--live-soft);border-top-color:transparent}
-.svc.rec b::after{content:"Picked for you";margin-left:8px;font:500 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--live);vertical-align:2px}
-.pin{display:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 10px;font-size:12.5px;font-weight:600;white-space:nowrap}
-.pin:hover{border-color:var(--accent);color:var(--accent)}
-body.review .pin{display:inline-flex;align-items:center;gap:5px}
-.missing{display:none;margin-top:36px;border:2px dashed var(--line);border-radius:18px;padding:22px;gap:12px;grid-template-columns:minmax(0,1fr) auto;align-items:center}
-body.review .missing{display:grid}
-.missing h3{font:800 20px/1.15 var(--display);font-stretch:112%;margin:0 0 4px}
-.missing p{margin:0;color:var(--ink-2);font-size:14.5px}
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.step .n{font:800 40px/1 var(--head);color:var(--blue)}
+.step b{font-size:20px}
+.step span{color:var(--ink-3);font-size:16px;line-height:1.45}
 
-/* How it works */
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.step{border-top:3px solid var(--ink);padding-top:16px}
-.step .n{font:500 12px/1 var(--mono);color:var(--ink-3);letter-spacing:.1em}
-.step h3{font:800 20px/1.15 var(--display);font-stretch:112%;margin:8px 0 6px}
-.step p{margin:0;color:var(--ink-2);font-size:15px}
+/* Plans */
+.plans{display:flex;flex-direction:column;gap:12px}
+details.plan-c{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+details.plan-c[open]{border-color:var(--blue)}
+details.plan-c > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:22px 24px}
+details.plan-c > summary::-webkit-details-marker{display:none}
+.pc-t{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-weight:700;font-size:22px}
+.tag{font:600 11px/1 var(--head);letter-spacing:.06em;text-transform:uppercase;background:var(--blue);color:#fff;padding:4px 8px;border-radius:999px}
+.tag.fit{background:#fff;color:#000}
+.price{font-size:16px;color:var(--blue);font-weight:500}
+.pc-b{padding:0 24px 24px;display:flex;flex-direction:column;gap:14px}
+.pc-b .who{color:var(--ink-3)}
+.pc-b .pts{padding:0}
 
-/* Packages */
-.packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
-.pack{border:1px solid var(--line);border-radius:18px;padding:24px;display:grid;gap:12px;align-content:start;background:var(--surface);transition:box-shadow .25s,border-color .25s}
-.pack.hero-pack{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.pack.suggested{box-shadow:0 0 0 3px var(--live)}
-.pack .who{font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
-.pack.hero-pack .who{color:var(--live)}
-.pack h3{font:800 24px/1.05 var(--display);font-stretch:115%;margin:0;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
-.pack .price{font:600 15px/1.3 var(--body)}
-.pack ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:14.5px}
-.pack p{margin:0;font-size:14.5px;color:var(--ink-2)}
-.pack.hero-pack p{color:color-mix(in srgb,var(--paper) 78%,transparent)}
-.pack .pin{justify-self:start}
-
-.close{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:center}
-.close h2{font-size:clamp(30px,4.2vw,52px)}
-.fine{font-size:13px;color:var(--ink-3);padding-block:28px 40px;border-top:1px solid var(--line)}
-.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:12px;font-size:14px;z-index:50;max-width:calc(100% - 32px)}
+.cta-band{margin:56px 0 64px;background:linear-gradient(120deg,#0a6fae 0%,#00b8f5 100%);border-radius:24px;padding:48px 32px;display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.cta-band h2{font-size:clamp(32px,5vw,52px)}
+.cta-band p{margin:0;font-size:19px;line-height:1.4;max-width:520px}
+.cta-band a{background:#000;color:#fff;font-weight:700;font-size:17px;padding:16px 26px;border-radius:999px}
+footer{border-top:1px solid var(--line)}
+.foot{max-width:960px;margin:0 auto;padding:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:14px;color:var(--ink-4)}
 
 @media (max-width:860px){
-  .hero,.sec-h,.close,.picker{grid-template-columns:minmax(0,1fr)}
-  .buckets,.steps,.packs{grid-template-columns:minmax(0,1fr)}
-  .bucketnav{grid-template-columns:repeat(2,minmax(0,1fr))}
-  nav.links{display:none}
-  .missing{grid-template-columns:minmax(0,1fr)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .week{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .picker,.plan,.steps{grid-template-columns:minmax(0,1fr)}
+  .top nav a:not(.cta){display:none}
+  .hero{padding:72px 20px 64px}
+  .pts{padding-left:4px}
+  main,.proof-in,.top-in,.foot{padding-left:16px;padding-right:16px}
 }
-@media (prefers-reduced-motion:reduce){.dot{animation:none}.btn:hover{transform:none}*{transition:none!important}}
 </style>
-<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
+<div class="draft"><b>Draft for the Chartis team.</b> Not for creators yet. Send notes to Matt.</div>
 
-<div class="reviewbar" role="note"><div class="wrap"><span><b>Draft for the Chartis team.</b> Not for creators yet. Send notes to Matt.</span></div></div>
-<div class="wrap">
-  <header class="top">
-    <a class="brand" href="#top">CHARTIS<span>.</span></a>
-    <nav class="links" aria-label="Sections">
-      <a href="#plan">Build your plan</a><a href="#services">Services</a><a href="#how">How it works</a><a href="#partner">Work with us</a>
+<header class="top">
+  <div class="top-in">
+    <a class="logo" href="#top" aria-label="Chartis"><img src="assets/chartis-c.png" alt=""><span>HARTIS</span></a>
+    <nav aria-label="Sections">
+      <a href="#services">Services</a><a href="#plan">Your plan</a><a href="#plans">Plans</a>
+      <a class="cta" href="https://chartis.gg" target="_blank" rel="noopener">Talk to us</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-copy">
-        <div class="eyebrow">For Fortnite and Roblox creators</div>
-        <h1>We run the work that keeps your game <em>growing</em>.</h1>
-        <p class="lede">Weekly live events, an item shop that actually earns, thumbnails that get clicked, and numbers you can act on. You keep making the game. We handle the rest, every week, on time.</p>
-        <div class="cta">
-          <a class="btn primary" href="#plan">Build your plan</a>
-          <a class="btn" href="#services">See all services</a>
-        </div>
-        <div class="plat">UEFN and Roblox · solo creators and full teams · one service or all of them</div>
-      </div>
+<section class="hero" id="top">
+  <div class="hero-in">
+    <div class="kicker">For Fortnite + Roblox creators</div>
+    <h1>We help your game grow</h1>
+    <p class="lede">You make the game. We run the rest: live events, the item shop, thumbnails and stats. Every week, on time, by people who run top Fortnite games today.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://chartis.gg" target="_blank" rel="noopener">Talk to us →</a>
+      <a class="btn" href="#plan">Build your plan</a>
+    </div>
+  </div>
+</section>
 
-      <aside class="week" aria-label="What a LiveOps week looks like">
-        <div class="week-h"><b>A LiveOps week</b><span>With Chartis</span></div>
-        <div class="day"><div class="d">MON</div><p>Read last week's numbers<small>Retention, playtime, CTR, item sales, and what moved them</small></p></div>
-        <div class="day"><div class="d">TUE</div><p>Test a new thumbnail<small>Two tiles, one winner, before the weekend traffic</small></p></div>
-        <div class="day"><div class="d">WED</div><p>Ship the update<small>New content and fixes, timed around Epic's downtime</small></p></div>
-        <div class="day"><div class="d">THU</div><p>Stock the item shop<small>This week's offers and bundles, priced to the audience</small></p></div>
-        <div class="day live"><div class="d">SAT</div><p><span class="dot" aria-hidden="true"></span>Live event goes off<small>The weekly moment players show up for, and your biggest CCU peak</small></p></div>
-        <div class="day"><div class="d">SUN</div><p>Report and plan next week<small>What worked, what didn't, what we change</small></p></div>
-      </aside>
-    </section>
+<section class="proof" aria-label="Chartis in numbers">
+  <div class="proof-in">
+    <div class="stats">
+      <div class="stat"><b>250+</b><span>Creators in our network</span></div>
+      <div class="stat"><b>190M+</b><span>Monthly plays</span></div>
+      <div class="stat"><b>10B</b><span>Monthly in-game impressions</span></div>
+      <div class="stat"><b>$2M+</b><span>Paid out to creators</span></div>
+    </div>
+    <div class="brands"><em>Brands we've worked with</em><span>Panda Express</span><span>Paramount</span><span>Spin Master</span><span>Twitch</span><span>Universal</span><span>US Open</span><span>Warner Music Group</span></div>
+  </div>
+</section>
 
-    <section class="block" id="plan" aria-labelledby="plan-h">
-      <div class="sec-h">
-        <div><div class="eyebrow">Build your plan</div><h2 id="plan-h">Tell us where your game is</h2></div>
-        <p>Two quick picks and we'll show the services that matter most for you right now, and the way to work with us that fits.</p>
-      </div>
-      <div class="picker">
-        <div>
-          <div class="q" role="group" aria-labelledby="q1">
-            <b id="q1">Where is your game right now?</b>
-            <div class="opts" id="stage"></div>
-          </div>
-          <div class="q" role="group" aria-labelledby="q2">
-            <b id="q2">What do you want most? <span style="font:400 13px var(--body);color:var(--ink-3)">Pick any</span></b>
-            <div class="opts" id="goals"></div>
-          </div>
-        </div>
-        <div class="plan" id="plan-out" aria-live="polite"></div>
-      </div>
-    </section>
+<main>
+  <section class="s" id="week">
+    <div class="s-h">
+      <div class="eyebrow">01 · What we do</div>
+      <h2>A week with Chartis</h2>
+      <p>This is what running your game looks like when we're on it. Every week, the same rhythm, so nothing slips.</p>
+    </div>
+    <div class="week">
+      <div class="day"><span class="d">MON</span><b>Read the numbers</b><span>Players, playtime, clicks and sales, and what moved them</span></div>
+      <div class="day"><span class="d">TUE</span><b>Test a thumbnail</b><span>Two tiles, one winner, before weekend traffic</span></div>
+      <div class="day"><span class="d">WED</span><b>Ship the update</b><span>New content and fixes, timed around Epic's downtime</span></div>
+      <div class="day"><span class="d">THU</span><b>Stock the shop</b><span>This week's offers and bundles, priced for your players</span></div>
+      <div class="day live"><span class="d"><span class="pulse" aria-hidden="true"></span>SAT</span><b>Live event</b><span>The weekly moment players show up for, and your biggest peak</span></div>
+      <div class="day"><span class="d">SUN</span><b>Report</b><span>What worked, what didn't, what changes next week</span></div>
+    </div>
+  </section>
 
-    <section class="block" id="services" aria-labelledby="svc-h">
-      <div class="sec-h">
-        <div><div class="eyebrow">Services</div><h2 id="svc-h">Everything a game needs after launch day</h2></div>
-        <p>Take one service or the whole set. They're run by the people who make and operate Fortnite games every week.</p>
-      </div>
-      <nav class="bucketnav" id="bucketnav" aria-label="Service groups"></nav>
-      <div class="buckets" id="buckets"></div>
-    </section>
+  <section class="s" id="services">
+    <div class="s-h">
+      <div class="eyebrow">02 · Services</div>
+      <h2>Pick what you need</h2>
+      <p>Twenty services in four groups. Take one, or let us run the whole thing.</p>
+    </div>
+    <div class="groups" id="groups" role="group" aria-label="Show a group"></div>
+    <div id="svc"></div>
+  </section>
 
-    <section class="block" id="partner" aria-labelledby="pk-h">
-      <div class="sec-h">
-        <div><div class="eyebrow">Work with us</div><h2 id="pk-h">Pick how much you want us to take on</h2></div>
-        <p>Start small and add more when it's working. The LiveOps partnership is where most games see the biggest change.</p>
-      </div>
-      <div class="packs">
-        <div class="pack" id="pk-single">
-          <div class="who">Solo creators and small teams</div>
-          <h3>Single services</h3>
-          <div class="price">Flat fee per job</div>
-          <ul><li>Thumbnails, trailers, QA or analytics</li><li>A one-off audit of your game</li><li>No long commitment</li></ul>
-          <p>The easy way to see how we work.</p>
-        </div>
-        <div class="pack hero-pack" id="pk-liveops">
-          <div class="who"><span class="dot" aria-hidden="true"></span>Games with momentum</div>
-          <h3>LiveOps partnership</h3>
-          <div class="price">A share of revenue. No upfront fee.</div>
-          <ul><li>Weekly live events and updates</li><li>Item shop and offers</li><li>Thumbnail testing</li><li>Weekly analytics and reporting</li></ul>
-          <p>We only do well when your game does.</p>
-        </div>
-        <div class="pack" id="pk-full">
-          <div class="who">Teams building for the long run</div>
-          <h3>Full partnership</h3>
-          <div class="price">Tailored terms</div>
-          <ul><li>Everything in the LiveOps partnership</li><li>Brand deals and cross-promotion</li><li>Funding for your next game</li></ul>
-          <p>For teams who want Chartis in their corner on everything.</p>
-        </div>
-      </div>
-    </section>
+  <section class="s" id="plan">
+    <div class="s-h">
+      <div class="eyebrow">03 · Your plan</div>
+      <h2>Where is your game right now?</h2>
+      <p>Two quick picks. We'll show what to start with and the way to work with us that fits.</p>
+    </div>
+    <div class="picker">
+      <div class="q"><b id="q1">Where is your game?</b><div class="opts" id="stage" role="group" aria-labelledby="q1"></div></div>
+      <div class="q"><b id="q2">What do you want most?</b><small>Pick any</small><div class="opts" id="goals" role="group" aria-labelledby="q2"></div></div>
+      <div class="plan" id="plan-out" aria-live="polite"></div>
+    </div>
+  </section>
 
-    <section class="block">
-      <div class="close">
-        <h2>Have a game that deserves more players?</h2>
-        <div style="display:grid;gap:14px">
-          <p style="margin:0;color:var(--ink-2)">Tell us about it. We'll start with a look at your numbers and show you where the upside is.</p>
-          <div class="cta"><a class="btn primary" href="https://chartis.gg" target="_blank" rel="noopener">Talk to Chartis</a></div>
-        </div>
-      </div>
-    </section>
-  </main>
+  <section class="s" id="how">
+    <div class="s-h"><div class="eyebrow">04 · How it works</div><h2>Three steps</h2></div>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><b>Tell us about your game</b><span>Send a link. That's it.</span></div>
+      <div class="step"><span class="n">2</span><b>We check your numbers</b><span>Where players drop, what the shop earns, how your tile converts, and how you compare with the games around you. Then a short list of what to fix first.</span></div>
+      <div class="step"><span class="n">3</span><b>We get to work</b><span>Weekly updates and clear reports, so every week starts from real results.</span></div>
+    </div>
+  </section>
 
-  <footer class="fine">Chartis · creator services for Fortnite and Roblox. Draft for internal review, September 2026.</footer>
-</div>
+  <section class="s" id="plans">
+    <div class="s-h"><div class="eyebrow">05 · Ways to work with us</div><h2>Start small or go all in</h2></div>
+    <div class="plans" id="plans-list"></div>
+  </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <section class="s" id="faq">
+    <div class="s-h"><div class="eyebrow">06 · Questions</div><h2>Quick answers</h2></div>
+    <div class="rows" id="faq-list"></div>
+  </section>
+
+  <section class="cta-band">
+    <h2>Want more players?</h2>
+    <p>Send us your game. We'll look at the numbers for free and show you where it can grow.</p>
+    <a href="https://chartis.gg" target="_blank" rel="noopener">Talk to Chartis</a>
+  </section>
+</main>
+
+<footer><div class="foot"><span>© 2026 Chartis GG, Inc.</span><span>The HQ for UGC games</span></div></footer>
+
 <script>
-const BUCKETS = [
-  { id: 'build', name: 'Build it right', tag: '', blurb: 'Start the game in the right lane, built to hold up.' },
-  { id: 'earn', name: 'Make more from it', tag: 'Revenue', blurb: 'Most maps leave money on the table. We find it.' },
-  { id: 'live', name: 'Keep it live', tag: 'Weekly', blurb: 'The weekly work that brings players back.' },
-  { id: 'grow', name: 'Grow the business', tag: '', blurb: 'The parts of running a studio nobody teaches you.' },
+const GROUPS = [
+  { id: 'live', name: 'Keep it live', blurb: 'The weekly work that brings players back.' },
+  { id: 'earn', name: 'Make more from it', blurb: 'Most maps leave money on the table. We find it.' },
+  { id: 'build', name: 'Build it right', blurb: 'Start in the right lane, built to hold up.' },
+  { id: 'grow', name: 'Grow the business', blurb: 'The parts of running a studio nobody teaches you.' },
 ];
+const S = (id, g, title, short, points) => ({ id, g, title, short, points });
 const SERVICES = [
-  ['strategy','build','Game strategy and design','Genre and Discover row fit, a read on your competitors, core loop review, tags and positioning.'],
-  ['qa','build','QA and playtesting','Bug passes, device and memory checks, and organized playtests before launch and every big update.'],
-  ['eng','build','Engineering and performance','Senior Verse coders for the hard systems, memory and hitch fixes, and controls that work on mobile.'],
-  ['porting','build','Porting','Roblox to Fortnite, Fortnite to Roblox, and GTA 6 when it opens up.'],
-  ['funding','build','Funding and publishing','Milestone-based funding for your next game in return for a share of its revenue.'],
-  ['iit','earn','Item shop and monetization','Shop setup, offers, bundles and pricing, conversion and top spenders. Planned around Fortnite\'s Feb 2027 payout change.'],
-  ['analytics','earn','Analytics and reporting','A weekly read on what moved and why, payout reports, forecasts, and what the game is worth.'],
-  ['brand','earn','Brand deals and IP','Integrations and billboards sold for you, licensed IP brought into your game, and merch.'],
-  ['paid','earn','Paid growth and the Sponsored row','When to buy, how much to bid, the creative, and whether it paid back. Roblox ads too.'],
-  ['liveops','live','LiveOps and live events','Weekly updates and live events, bug fixes, and an update calendar planned around Epic\'s downtimes.'],
-  ['thumbs','live','Thumbnails and A/B testing','A thumbnail artist plus a weekly testing routine, so your tile keeps earning the click.'],
-  ['trailers','live','Trailers and social content','Launch and update trailers, and weekly TikTok, Shorts and X clips from your game.'],
-  ['art','live','Art and audio','3D modelers, artists, sound and music on call when an update needs them.'],
-  ['community','live','Community and translation','Discord and community hub management, bug triage, and translation for the big non-English markets.'],
-  ['launch','grow','Launch management','One launch plan: the date, trailer, thumbnails, creators to bring in, and first-week live ops.'],
-  ['epic','grow','Epic\'s Picks, MegaGrant and live event submissions','We help you prepare and submit, so your game is ready when Epic is choosing.'],
-  ['crosspromo','grow','Cross-promotion across our games','Billboards, links and joint events between games in the Chartis network.'],
-  ['legal','grow','Legal, tax and compliance','Contracts and revenue splits between collaborators, monthly payout splitting, tax setup, Epic\'s rules, copycat takedowns and account security.'],
-  ['talent','grow','Hiring and talent','Finding reliable developers and keeping them on schedule, plus trained interns ready to join a live game.'],
-  ['partner','grow','Partnership and funding options','When you want more than a service: a longer partnership or funding for what you make next.'],
-].map(([id, b, name, desc]) => ({ id, b, name, desc }));
-const BY_ID = Object.fromEntries(SERVICES.map(s => [s.id, s]));
-
+  S('liveops','live','Live events and LiveOps','A big moment every week.',['We plan and run a weekly live event','New content and fixes shipped every week','An update calendar planned around Epic\'s downtimes','Players come back for it: your biggest peak of the week']),
+  S('thumbs','live','Thumbnails','Get more clicks.',['We make new thumbnails','We test two and keep the winner','Done before weekend traffic, every week']),
+  S('trailers','live','Trailers and social','Show off your game.',['Launch and update trailers, captured by pros','Weekly TikTok, Shorts and X clips','Ready for socials and your game page']),
+  S('art','live','Art and audio','Extra hands when an update needs them.',['3D modelers and artists on call','Sound effects and music for events and trailers']),
+  S('community','live','Community and translation','Keep your players talking.',['Discord and community hub management','Bug reports sorted and passed to your team','Store and in-game text translated for the big non-English markets']),
+  S('iit','earn','Item shop','Make more from your shop.',['Shop setup, offers and bundles','Priced for your players','We track what sells and who buys','Planned around Fortnite\'s Feb 2027 payout change']),
+  S('stats','earn','Stats and reports','Know what\'s working.',['Players, playtime, clicks and sales','One simple report each week','Clear next steps','Forecasts, and what your game is worth']),
+  S('brand','earn','Brand deals','Get paid to work with brands.',['We bring brand deals and billboards to your game','Licensed IP brought into your game','Merch when a game is big enough']),
+  S('paid','earn','Paid growth and the Sponsored row','Buy players only when it pays.',['When to buy, how much to bid, and the creative','We check whether it paid back','Roblox ads too']),
+  S('strategy','build','Game strategy and design','Start in the right lane.',['Genre and Discover row fit','A read on the games you compete with','Core loop review','Tags and positioning']),
+  S('qa','build','Testing and playtests','Find bugs before players do.',['We play your update before it ships','Device and memory checks','Organized playtests before big updates','You get a list of what to fix']),
+  S('eng','build','Engineering and performance','Fix the hard stuff.',['Senior Verse coders for the hard systems','Memory and lag fixes','Controls that work on mobile']),
+  S('porting','build','Porting','Take your hit to more players.',['Roblox to Fortnite','Fortnite to Roblox','GTA 6 when it opens up']),
+  S('funding','build','Funding and publishing','Money for your next game.',['Funding paid in milestones','In return for a share of the game\'s revenue']),
+  S('launch','grow','Launch help','Get the first week right.',['One launch plan: the date, trailer and thumbnails','Creators to bring in','Live ops for the first week']),
+  S('epic','grow','Epic\'s Picks, MegaGrant and live event submissions','Be ready when Epic is choosing.',['We help you prepare and submit','Epic\'s Picks, MegaGrants and live events']),
+  S('crosspromo','grow','Cross-promo across our games','Players from the games next door.',['Billboards and links between games in the Chartis network','Joint events with other top games']),
+  S('legal','grow','Legal, tax and contracts','The boring stuff, handled.',['Contracts and revenue splits with collaborators','Monthly payout splits','Tax setup','Epic\'s rules, copycat takedowns and account security']),
+  S('talent','grow','Hiring','Find people you can count on.',['Reliable developers, kept on schedule','Trained interns ready to join a live game']),
+  S('partner','grow','Partnership and funding options','When you want more than a service.',['A longer partnership','Funding for what you make next']),
+];
+const BY = Object.fromEntries(SERVICES.map(s => [s.id, s]));
 const STAGES = [
-  ['pre', 'Not launched yet', ['strategy', 'qa', 'eng', 'launch', 'thumbs', 'trailers', 'epic', 'funding']],
-  ['new', 'Just launched', ['launch', 'thumbs', 'analytics', 'liveops', 'epic', 'iit', 'paid']],
-  ['growing', 'Growing', ['liveops', 'iit', 'thumbs', 'analytics', 'brand', 'crosspromo', 'community']],
-  ['falling', 'Flat or falling', ['analytics', 'strategy', 'thumbs', 'liveops', 'iit', 'paid', 'epic']],
-  ['steady', 'Big and steady', ['iit', 'brand', 'liveops', 'porting', 'legal', 'talent', 'partner']],
+  ['pre','Not launched yet',['strategy','qa','eng','launch','thumbs','trailers','epic','funding']],
+  ['new','Just launched',['launch','thumbs','stats','liveops','epic','iit','paid']],
+  ['growing','Growing',['liveops','iit','thumbs','stats','brand','crosspromo','community']],
+  ['falling','Flat or falling',['stats','strategy','thumbs','liveops','iit','paid','epic']],
+  ['steady','Big and steady',['iit','brand','liveops','porting','legal','talent','partner']],
 ];
 const GOALS = [
-  ['players', 'More players', ['thumbs', 'paid', 'epic', 'crosspromo', 'trailers', 'launch', 'strategy']],
-  ['revenue', 'More revenue', ['iit', 'brand', 'analytics', 'porting', 'paid']],
-  ['time', 'Less work every week', ['liveops', 'art', 'community', 'qa', 'talent']],
-  ['business', 'Help running the business', ['legal', 'talent', 'partner', 'funding', 'analytics']],
+  ['players','More players',['thumbs','paid','epic','crosspromo','trailers','launch','strategy']],
+  ['revenue','More revenue',['iit','brand','stats','porting','paid']],
+  ['time','Less work every week',['liveops','art','community','qa','talent']],
+  ['business','Help running the business',['legal','talent','partner','funding','stats']],
 ];
 const WHY = {
-  pre: 'Getting the lane, the tile and the launch right matters more than anything you do after.',
+  pre: 'Getting the lane, the tile and the launch right matters more than anything after.',
   new: 'The first weeks decide whether Discover keeps showing your game. Clicks and retention come first.',
-  growing: 'You have the players. Now it is about a weekly rhythm and making the most of every visit.',
-  falling: 'First find out what moved, then fix the tile and the weekly rhythm before spending on reach.',
+  growing: 'You have the players. Now it\'s a weekly rhythm and making the most of every visit.',
+  falling: 'First find out what moved, then fix the tile and the weekly rhythm before buying reach.',
   steady: 'A big game earns more from the shop, brands and new platforms than from more of the same.',
 };
+const PLANS = [
+  { id: 'one', title: 'One job', price: 'Flat price. Pay per job.', who: 'Best for: trying us out, solo creators and small teams.', points: ['A thumbnail, trailer, test or report','Or a one-time check of your game','No long deal'] },
+  { id: 'liveops', title: 'LiveOps partner', popular: true, price: 'No upfront cost. We take a share of revenue.', who: 'Best for: games that are already growing.', points: ['Weekly live events and updates','Item shop and offers','Thumbnail testing','Weekly stats and reports','We only do well when your game does'] },
+  { id: 'full', title: 'Full partner', price: 'Custom deal.', who: 'Best for: teams in it for the long run.', points: ['Everything in LiveOps','Brand deals and cross-promo','Funding for your next game'] },
+];
+const FAQS = [
+  ['Do I still own my game?','Yes. Your game and your account stay yours. We work alongside you.'],
+  ['Do I have to pay upfront?','Not for a LiveOps partnership. We only earn when your game earns. Single jobs have a flat price.'],
+  ['Fortnite or Roblox?','Both. We work with UEFN and Roblox games, and we can help you port between them.'],
+  ['Is my game too small?','Probably not. Start with one job and see how it goes.'],
+  ['What is a live event?','A short moment, every week, where something big happens in your map: new content drops, effects go off, and players gather for it. It\'s the biggest driver of players coming back.'],
+  ['How fast will I see results?','Thumbnail tests and shop changes show up within a week or two. Live events build week by week.'],
+  ['Who actually does the work?','People who build and run top Fortnite games every week, plus specialists for art, testing and code.'],
+];
 
-let state = { stage: 'growing', goals: new Set(['revenue']) };
-try { const s = JSON.parse(localStorage.getItem('cs-plan') || 'null'); if (s && s.stage) state = { stage: s.stage, goals: new Set(s.goals || []) }; } catch {}
-const save = () => { try { localStorage.setItem('cs-plan', JSON.stringify({ stage: state.stage, goals: [...state.goals] })); } catch {} };
-
-const el = (tag, attrs = {}, ...kids) => { const e = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (k === 'class') e.className = v; else if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v); } for (const k of kids.flat()) if (k != null) e.append(k); return e; };
-
-function renderBuckets() {
-  const nav = document.getElementById('bucketnav'), box = document.getElementById('buckets');
-  for (const b of BUCKETS) {
-    const list = SERVICES.filter(s => s.b === b.id);
-    nav.append(el('a', { href: '#b-' + b.id }, el('b', {}, b.name), el('span', {}, `${list.length} services`)));
-    box.append(el('div', { class: 'bucket', id: 'b-' + b.id },
-      el('h3', {}, b.name, b.tag ? el('span', { class: 'tag' }, b.tag) : null),
-      el('p', {}, b.blurb),
-      list.map(s => el('div', { class: 'svc', id: 'svc-' + s.id },
-        el('b', {}, s.name), el('span', {}, s.desc)))));
-  }
-}
+let state = { group: 'all', stage: 'growing', goals: new Set(['revenue']) };
+try { const s = JSON.parse(localStorage.getItem('cs2') || 'null'); if (s) state = { group: s.group || 'all', stage: s.stage || 'growing', goals: new Set(s.goals || []) }; } catch {}
+const save = () => { try { localStorage.setItem('cs2', JSON.stringify({ group: state.group, stage: state.stage, goals: [...state.goals] })); } catch {} };
+const el = (t, a = {}, ...k) => { const e = document.createElement(t); for (const [n, v] of Object.entries(a)) { if (n === 'class') e.className = v; else if (n.startsWith('on')) e.addEventListener(n.slice(2), v); else e.setAttribute(n, v); } for (const c of k.flat()) if (c != null) e.append(c); return e; };
+const pts = list => el('ul', { class: 'pts' }, list.map(p => el('li', {}, p)));
 
 function pick() {
-  const score = {};
-  const st = STAGES.find(x => x[0] === state.stage);
-  st[2].forEach((id, i) => { score[id] = (score[id] || 0) + 3 - i * 0.1; });
-  for (const g of GOALS) if (state.goals.has(g[0])) g[2].forEach((id, i) => { score[id] = (score[id] || 0) + 2 - i * 0.1; });
-  return Object.entries(score).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([id]) => id);
+  const sc = {};
+  STAGES.find(x => x[0] === state.stage)[2].forEach((id, i) => { sc[id] = (sc[id] || 0) + 3 - i * .1; });
+  for (const g of GOALS) if (state.goals.has(g[0])) g[2].forEach((id, i) => { sc[id] = (sc[id] || 0) + 2 - i * .1; });
+  return Object.entries(sc).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([id]) => id);
 }
-function packageFor(ids) {
-  if (state.stage === 'steady' && (state.goals.has('business') || ids.includes('partner'))) return ['pk-full', 'Full partnership', 'You need more than a service: partnership terms built around a big game.'];
-  if (state.stage === 'pre' && !state.goals.has('time')) return ['pk-single', 'Single services', 'Start with the launch pieces you need, then move to LiveOps once it is live.'];
-  if (ids.includes('liveops') || ids.includes('iit') || state.goals.has('time')) return ['pk-liveops', 'LiveOps partnership', 'We run the weekly work for a share of revenue, with no upfront fee.'];
-  return ['pk-single', 'Single services', 'Pick the one or two that fix the biggest gap first.'];
+function fitFor(ids) {
+  if (state.stage === 'steady' && (state.goals.has('business') || ids.includes('partner'))) return 'full';
+  if (state.stage === 'pre' && !state.goals.has('time')) return 'one';
+  if (ids.includes('liveops') || ids.includes('iit') || state.goals.has('time')) return 'liveops';
+  return 'one';
+}
+
+function renderServices() {
+  const ids = pick();
+  document.getElementById('groups').replaceChildren(
+    ...[['all', 'All 20'], ...GROUPS.map(g => [g.id, g.name])].map(([id, l]) => el('button', { type: 'button', 'aria-pressed': String(state.group === id), onclick: () => { state.group = id; save(); renderServices(); } }, l)));
+  let n = 0;
+  document.getElementById('svc').replaceChildren(...GROUPS.filter(g => state.group === 'all' || g.id === state.group).map(g => {
+    const list = SERVICES.filter(s => s.g === g.id);
+    return el('div', { class: 'group' },
+      el('div', { class: 'group-h' }, el('h3', {}, g.name), el('span', {}, g.blurb)),
+      el('div', { class: 'rows' }, list.map(s => { n++; return el('details', { class: 'row' + (ids.includes(s.id) ? ' rec' : ''), id: 'svc-' + s.id },
+        el('summary', {}, el('span', { class: 'num' }, String(n).padStart(2, '0')), el('span', { class: 'txt' }, el('span', { class: 't' }, s.title), el('span', { class: 'sh' }, s.short)), el('span', { class: 'ic', 'aria-hidden': 'true' })),
+        pts(s.points)); })));
+  }));
 }
 
 function renderPicker() {
-  const sbox = document.getElementById('stage'), gbox = document.getElementById('goals');
-  sbox.replaceChildren(...STAGES.map(([k, l]) => el('button', { class: 'opt', type: 'button', 'aria-pressed': String(state.stage === k), onclick: () => { state.stage = k; save(); renderPicker(); } }, l)));
-  gbox.replaceChildren(...GOALS.map(([k, l]) => el('button', { class: 'opt', type: 'button', 'aria-pressed': String(state.goals.has(k)), onclick: () => { state.goals.has(k) ? state.goals.delete(k) : state.goals.add(k); save(); renderPicker(); } }, l)));
-  const ids = pick(), pk = packageFor(ids);
-  const stageLabel = STAGES.find(x => x[0] === state.stage)[1];
+  document.getElementById('stage').replaceChildren(...STAGES.map(([k, l]) => el('button', { class: 'opt', type: 'button', 'aria-pressed': String(state.stage === k), onclick: () => { state.stage = k; save(); refresh(); } }, l)));
+  document.getElementById('goals').replaceChildren(...GOALS.map(([k, l]) => el('button', { class: 'opt', type: 'button', 'aria-pressed': String(state.goals.has(k)), onclick: () => { state.goals.has(k) ? state.goals.delete(k) : state.goals.add(k); save(); refresh(); } }, l)));
+  const ids = pick(), fit = PLANS.find(p => p.id === fitFor(ids));
+  const stage = STAGES.find(x => x[0] === state.stage)[1];
   document.getElementById('plan-out').replaceChildren(
-    el('div', { class: 'eyebrow' }, 'Your plan'),
-    el('h3', {}, `${stageLabel}: start with these ${ids.length}`),
-    el('p', { style: 'margin:0;font-size:14.5px;opacity:.85' }, WHY[state.stage]),
-    el('ol', {}, ids.map(id => el('li', {}, el('b', {}, BY_ID[id].name), el('span', {}, BY_ID[id].desc)))),
-    el('div', { class: 'pk' }, 'Best fit: ', el('b', {}, pk[1]), '. ', pk[2], ' ', el('a', { href: '#' + pk[0] }, 'See it')));
-  document.querySelectorAll('.svc').forEach(n => n.classList.toggle('rec', ids.includes(n.id.slice(4))));
-  document.querySelectorAll('.pack').forEach(n => n.classList.toggle('suggested', n.id === pk[0]));
+    el('div', {}, el('h3', {}, `${stage}: start here`), el('p', {}, WHY[state.stage]),
+      el('div', { class: 'fit' }, 'Best fit: ', el('b', {}, fit.title), `. ${fit.price} `, el('a', { href: '#plans' }, 'See plans'))),
+    el('ol', {}, ids.map(id => el('li', {}, el('b', {}, BY[id].title), el('span', {}, BY[id].short)))));
 }
 
-renderBuckets();
-renderPicker();
-
-// A short entrance on load; content is already in place if the library or motion is off.
-if (window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  gsap.from('.hero-copy > *', { y: 18, opacity: 0.2, duration: .6, stagger: .07, ease: 'power2.out' });
-  gsap.from('.week .day', { x: 14, opacity: 0.2, duration: .5, stagger: .06, delay: .2, ease: 'power2.out' });
-  // Background tabs pause animation frames: make sure the text ends fully visible either way.
-  setTimeout(() => gsap.set('.hero-copy > *, .week .day', { clearProps: 'opacity,transform' }), 1600);
+function renderPlans() {
+  const fit = fitFor(pick());
+  document.getElementById('plans-list').replaceChildren(...PLANS.map(p => el('details', { class: 'plan-c', ...(p.popular ? { open: '' } : {}) },
+    el('summary', {}, el('span', { class: 'txt' },
+      el('span', { class: 'pc-t' }, p.title, p.popular ? el('span', { class: 'tag' }, 'Most popular') : null, p.id === fit ? el('span', { class: 'tag fit' }, 'Fits your plan') : null),
+      el('span', { class: 'price' }, p.price)), el('span', { class: 'ic', 'aria-hidden': 'true' })),
+    el('div', { class: 'pc-b' }, el('span', { class: 'who' }, p.who), pts(p.points)))));
 }
+
+function renderFaq() {
+  document.getElementById('faq-list').replaceChildren(...FAQS.map(([q, a]) => el('details', { class: 'row' },
+    el('summary', {}, el('span', { class: 'txt' }, el('span', { class: 't', style: 'font-size:19px' }, q)), el('span', { class: 'ic', 'aria-hidden': 'true' })),
+    el('p', { style: 'margin:0;padding:0 4px 22px;font-size:17px;line-height:1.5;color:#e3eaed;max-width:640px' }, a))));
+}
+
+function refresh() { renderPicker(); renderServices(); renderPlans(); }
+refresh(); renderFaq();
 </script>
-
 </body>
 </html>
