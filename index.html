@@ -224,7 +224,7 @@ footer{border-top:1px solid var(--line)}
     <div class="s-h">
       <div class="eyebrow">02 · Services</div>
       <h2>Pick what you need</h2>
-      <p>Twenty services in four groups. Take one, or let us run the whole thing.</p>
+      <p>Twenty-one services in four groups. Take one, or let us run the whole thing.</p>
     </div>
     <div class="groups" id="groups" role="group" aria-label="Show a group"></div>
     <div id="svc"></div>
@@ -247,7 +247,7 @@ footer{border-top:1px solid var(--line)}
     <div class="s-h"><div class="eyebrow">04 · How it works</div><h2>Three steps</h2></div>
     <div class="steps">
       <div class="step"><span class="n">1</span><b>Tell us about your game</b><span>Send a link. That's it.</span></div>
-      <div class="step"><span class="n">2</span><b>We check your numbers</b><span>Where players drop, what the shop earns, how your tile converts, and how you compare with the games around you. Then a short list of what to fix first.</span></div>
+      <div class="step"><span class="n">2</span><b>We check your numbers, free</b><span>Where players drop, what the shop earns, how your tile converts, and how you compare with the games around you. Then a short list of what to fix first.</span></div>
       <div class="step"><span class="n">3</span><b>We get to work</b><span>Weekly updates and clear reports, so every week starts from real results.</span></div>
     </div>
   </section>
@@ -281,16 +281,17 @@ const GROUPS = [
 const S = (id, g, title, short, points) => ({ id, g, title, short, points });
 const SERVICES = [
   S('liveops','live','Live events and LiveOps','A big moment every week.',['We plan and run a weekly live event','New content and fixes shipped every week','An update calendar planned around Epic\'s downtimes','Players come back for it: your biggest peak of the week']),
+  S('update','live','Update day swaps','New weapons and items in, every update day.',['The new weapons and items Epic adds, swapped into your game on update day','A quick test pass before it goes live','Built for PvP and classic games that just need to stay fresh','AI-assisted, so it\'s fast and cheap to run']),
   S('thumbs','live','Thumbnails','Get more clicks.',['We make new thumbnails','We test two and keep the winner','Done before weekend traffic, every week']),
   S('trailers','live','Trailers and social','Show off your game.',['Launch and update trailers, captured by pros','Weekly TikTok, Shorts and X clips','Ready for socials and your game page']),
   S('art','live','Art and audio','Extra hands when an update needs them.',['3D modelers and artists on call','Sound effects and music for events and trailers']),
   S('community','live','Community and translation','Keep your players talking.',['Discord and community hub management','Bug reports sorted and passed to your team','Store and in-game text translated for the big non-English markets']),
   S('iit','earn','Item shop','Make more from your shop.',['Shop setup, offers and bundles','Priced for your players','We track what sells and who buys','Planned around Fortnite\'s Feb 2027 payout change']),
-  S('stats','earn','Stats and reports','Know what\'s working.',['Players, playtime, clicks and sales','One simple report each week','Clear next steps','Forecasts, and what your game is worth']),
+  S('stats','earn','Stats and reports','Know what\'s working.',['Players, playtime, clicks and sales','One simple report each week','Clear next steps','Forecasts, and what your game is worth','Included in our partnerships']),
   S('brand','earn','Brand deals','Get paid to work with brands.',['We bring brand deals and billboards to your game','Licensed IP brought into your game','Merch when a game is big enough']),
   S('paid','earn','Paid growth and the Sponsored row','Buy players only when it pays.',['When to buy, how much to bid, and the creative','We check whether it paid back','Roblox ads too']),
   S('strategy','build','Game strategy and design','Start in the right lane.',['Genre and Discover row fit','A read on the games you compete with','Core loop review','Tags and positioning']),
-  S('qa','build','Testing and playtests','Find bugs before players do.',['We play your update before it ships','Device and memory checks','Organized playtests before big updates','You get a list of what to fix']),
+  S('qa','build','Testing and playtests','Find bugs before players do.',['We play your update before it ships','Device and memory checks','Organized playtests before big updates','You get a list of what to fix','Included in our partnerships']),
   S('eng','build','Engineering and performance','Fix the hard stuff.',['Senior Verse coders for the hard systems','Memory and lag fixes','Controls that work on mobile']),
   S('porting','build','Porting','Take your hit to more players.',['Roblox to Fortnite','Fortnite to Roblox','GTA 6 when it opens up']),
   S('funding','build','Funding and publishing','Money for your next game.',['Funding paid in milestones','In return for a share of the game\'s revenue']),
@@ -307,12 +308,12 @@ const STAGES = [
   ['new','Just launched',['launch','thumbs','stats','liveops','epic','iit','paid']],
   ['growing','Growing',['liveops','iit','thumbs','stats','brand','crosspromo','community']],
   ['falling','Flat or falling',['stats','strategy','thumbs','liveops','iit','paid','epic']],
-  ['steady','Big and steady',['iit','brand','liveops','porting','legal','talent','partner']],
+  ['steady','Big and steady',['iit','brand','liveops','update','porting','legal','talent','partner']],
 ];
 const GOALS = [
   ['players','More players',['thumbs','paid','epic','crosspromo','trailers','launch','strategy']],
   ['revenue','More revenue',['iit','brand','stats','porting','paid']],
-  ['time','Less work every week',['liveops','art','community','qa','talent']],
+  ['time','Less work every week',['liveops','update','art','community','qa','talent']],
   ['business','Help running the business',['legal','talent','partner','funding','stats']],
 ];
 const WHY = {
@@ -323,15 +324,15 @@ const WHY = {
   steady: 'A big game earns more from the shop, brands and new platforms than from more of the same.',
 };
 const PLANS = [
-  { id: 'one', title: 'One job', price: 'Flat price. Pay per job.', who: 'Best for: trying us out, solo creators and small teams.', points: ['A thumbnail, trailer, test or report','Or a one-time check of your game','No long deal'] },
-  { id: 'liveops', title: 'LiveOps partner', popular: true, price: 'No upfront cost. We take a share of revenue.', who: 'Best for: games that are already growing.', points: ['Weekly live events and updates','Item shop and offers','Thumbnail testing','Weekly stats and reports','We only do well when your game does'] },
-  { id: 'full', title: 'Full partner', price: 'Custom deal.', who: 'Best for: teams in it for the long run.', points: ['Everything in LiveOps','Brand deals and cross-promo','Funding for your next game'] },
+  { id: 'one', title: 'One job', price: 'Flat price. Pay per job.', who: 'Best for: trying us out, solo creators and small teams.', points: ['A thumbnail, trailer or art for an update','No long deal','Want more? Start with a free look at your numbers'] },
+  { id: 'liveops', title: 'LiveOps partner', popular: true, price: 'No upfront cost. We take a share of revenue.', who: 'Best for: games that are already growing.', points: ['Weekly live events and updates','Item shop and offers','Thumbnail testing','Weekly stats, reports and testing included','PvP or classic game? A lighter update-day plan: new weapons and items swapped in and tested every update','We only do well when your game does'] },
+  { id: 'full', title: 'Full partner', price: 'Custom deal.', who: 'Best for: teams in it for the long run.', points: ['Everything in LiveOps','Brand deals and cross-promo','Funding for your next game','Full stats, testing and forecasts'] },
 ];
 const FAQS = [
   ['Do I still own my game?','Yes. Your game and your account stay yours. We work alongside you.'],
-  ['Do I have to pay upfront?','Not for a LiveOps partnership. We only earn when your game earns. Single jobs have a flat price.'],
+  ['Do I have to pay upfront?','No. The first look at your numbers is free, and a LiveOps partnership has no upfront cost: we only earn when your game earns. Creative jobs like thumbnails and trailers have a flat price.'],
   ['Fortnite or Roblox?','Both. We work with UEFN and Roblox games, and we can help you port between them.'],
-  ['Is my game too small?','Probably not. Start with one job and see how it goes.'],
+  ['Is my game too small?','Probably not. Start with a free look at your numbers, or one creative job, and see how it goes.'],
   ['What is a live event?','A short moment, every week, where something big happens in your map: new content drops, effects go off, and players gather for it. It\'s the biggest driver of players coming back.'],
   ['How fast will I see results?','Thumbnail tests and shop changes show up within a week or two. Live events build week by week.'],
   ['Who actually does the work?','People who build and run top Fortnite games every week, plus specialists for art, testing and code.'],
@@ -359,7 +360,7 @@ function fitFor(ids) {
 function renderServices() {
   const ids = pick();
   document.getElementById('groups').replaceChildren(
-    ...[['all', 'All 20'], ...GROUPS.map(g => [g.id, g.name])].map(([id, l]) => el('button', { type: 'button', 'aria-pressed': String(state.group === id), onclick: () => { state.group = id; save(); renderServices(); } }, l)));
+    ...[['all', 'All 21'], ...GROUPS.map(g => [g.id, g.name])].map(([id, l]) => el('button', { type: 'button', 'aria-pressed': String(state.group === id), onclick: () => { state.group = id; save(); renderServices(); } }, l)));
   let n = 0;
   document.getElementById('svc').replaceChildren(...GROUPS.filter(g => state.group === 'all' || g.id === state.group).map(g => {
     const list = SERVICES.filter(s => s.g === g.id);
