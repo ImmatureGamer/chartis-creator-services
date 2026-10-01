@@ -375,6 +375,8 @@ renderPicker();
 if (window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   gsap.from('.hero-copy > *', { y: 18, opacity: 0.2, duration: .6, stagger: .07, ease: 'power2.out' });
   gsap.from('.week .day', { x: 14, opacity: 0.2, duration: .5, stagger: .06, delay: .2, ease: 'power2.out' });
+  // Background tabs pause animation frames: make sure the text ends fully visible either way.
+  setTimeout(() => gsap.set('.hero-copy > *, .week .day', { clearProps: 'opacity,transform' }), 1600);
 }
 </script>
 
